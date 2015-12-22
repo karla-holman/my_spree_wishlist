@@ -10,12 +10,12 @@
 <% end -%>
 </p>
 
-<p><%= mail.sender_name %></p>
+<p>From,<br><%= mail.sender_name %></p>
 
 <p><%= Spree.t(:click_link_to_view_wishlist, name: @object.name) %><br>
 <%= wishlist_url(@object) %></p>
 
 <p>
   <a href="http://www.jcauto.com" target="_blank" style="text-decoration: none;">JC Auto Restoration, Inc.</a><br>
-  <%= image_tag attachments['Logo.png'].url, alt: '', style: "width: 35%; margin-top: 20px" %>
+  <%= image_tag attachments['Logo.png'].url, alt: '', style: "width: 200px; margin-top: 20px" %>
 </p>

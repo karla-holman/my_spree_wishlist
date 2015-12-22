@@ -71,11 +71,15 @@
             <%= display_price(variant) %>
           </td>
           <td>
-            <%= form_for wish do |f| %>
-              <div class="form-group">
-                <%= f.number_field :quantity, class: "form-control" %>
-              </div>
-              <%= f.submit Spree.t('actions.save'), class: 'btn btn-info'  %>
+            <% if @wishlist.user == spree_current_user %>
+              <%= form_for wish do |f| %>
+                <div class="form-group">
+                  <%= f.number_field :quantity, class: "form-control" %>
+                </div>
+                <%= f.submit Spree.t('actions.save'), class: 'btn btn-info'  %>
+              <% end %>
+            <% else %>
+                <%= wish.quantity %>
             <% end %>
           </td>
           <td>
