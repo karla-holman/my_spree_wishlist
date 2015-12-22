@@ -107,15 +107,13 @@
   </div>
 </div>
 <div class="row">
-  <div class="col-md-5">
+  <div class="col-md-12">
     <% if @wishlist.user == spree_current_user %>
-      <%= link_to Spree.t(:create_new_wishlist), new_wishlist_path, class: 'btn btn-default' %>
-      <%= link_to Spree.t(:continue_shopping), products_path, class: 'btn btn-default' %>
+      <%= link_to Spree.t(:continue_shopping), products_path, class: 'btn btn-primary', style: "margin-bottom: 5px" %>
+      <%= link_to Spree.t(:create_new_wishlist), new_wishlist_path, class: 'btn btn-default', style: "margin-bottom: 5px" %>
     <% end -%>
+    <% if respond_to?(:email_to_friend_url) %>
+      <%= link_to Spree.t('email_to_friend.send_to_friend'), email_to_friend_url('wishlist', @wishlist), class: 'btn btn-default', style: "margin-bottom: 5px" %>
+    <% end %>
   </div>
-  <% if respond_to?(:email_to_friend_url) %>
-    <div class="col-md-3">
-      <%= link_to Spree.t('email_to_friend.send_to_friend'), email_to_friend_url('wishlist', @wishlist), class: 'btn btn-default' %>
-    </div>
-  <% end %>
 </div>
