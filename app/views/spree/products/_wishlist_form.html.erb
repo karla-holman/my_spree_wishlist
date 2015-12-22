@@ -1,5 +1,5 @@
 <% if spree_current_user %>
-  <div id="wishlist-form">
+  <div id="wishlist-form" style="margin-right: 20px; float: left">
     <%= form_for Spree::WishedProduct.new do |f| %>
       <%= f.hidden_field :variant_id, value: @product.master.id %>
       <%= f.hidden_field :quantity %>

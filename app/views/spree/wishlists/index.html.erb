@@ -8,13 +8,13 @@
 </thead>
 <tbody>
     <% @wishlists.each do |wl| %>
-        <% if !wl.is_private? || @user == spree_current_user %>
+        <% # if !wl.is_private? || @user == spree_current_user %>
           <% css_class = cycle('even', 'odd', :name => "wish") %>
           <tr class="<%= css_class %>">
             <td><%= link_to wl.name, wl %></td>
             <td><%= wl.created_at.strftime("%m/%d/%Y") %></td>
           </tr>
-        <% end %>
+        <% # end %>
     <% end %>
   <% reset_cycle('wish') %>
 </tbody>

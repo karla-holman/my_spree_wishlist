@@ -1,0 +1,21 @@
+<p><%= mail.recipient_name %>,</p>
+
+<p><%= Spree.t(:take_a_look_at_my_wishlist) %></p>
+
+<p style="margin-left: 20px"><span style="font-weight: 600"><%= @object.name %></span>: Contains <%= @object.wished_products.length %> <%= @object.wished_products.length == 1 ? "product" : "products" %></p>
+
+<p>
+<% unless mail.message.blank? -%>
+<%= mail.message %>
+<% end -%>
+</p>
+
+<p><%= mail.sender_name %></p>
+
+<p><%= Spree.t(:click_link_to_view_wishlist, name: @object.name) %><br>
+<%= wishlist_url(@object) %></p>
+
+<p>
+  <a href="http://www.jcauto.com" target="_blank" style="text-decoration: none;">JC Auto Restoration, Inc.</a><br>
+  <%= image_tag attachments['Logo.png'].url, alt: '', style: "width: 35%; margin-top: 20px" %>
+</p>
