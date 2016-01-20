@@ -8,7 +8,8 @@
       </button>
     <% end %>
   </div>
-<% else %>
+<% end %>
+<% if !spree_current_user %>
   <div class="mobile-float-center" >
   	<%= link_to "Log on to start a Wishlist", wishlists_path, class: "btn btn-info" %>
   </div>
