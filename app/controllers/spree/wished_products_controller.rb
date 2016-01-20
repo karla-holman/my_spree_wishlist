@@ -1,5 +1,6 @@
 class Spree::WishedProductsController < Spree::StoreController
   respond_to :html
+  before_filter :authorized?
 
   def create
     @wished_product = Spree::WishedProduct.new(wished_product_attributes)
@@ -39,5 +40,12 @@ class Spree::WishedProductsController < Spree::StoreController
 
   def wished_product_attributes
     params.require(:wished_product).permit(:variant_id, :wishlist_id, :remark, :quantity)
+  end
+
+  def authorized?
+    unless spree_current_user
+      flash[:error] = "Please log in or create an account to create a wishlist."
+      redirect_unauthorized_access
+    end
   end
 end

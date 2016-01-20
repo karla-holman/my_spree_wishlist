@@ -2,6 +2,7 @@ class Spree::WishlistsController < Spree::StoreController
   helper 'spree/products'
 
   before_action :find_wishlist, only: [:destroy, :show, :update, :edit]
+  before_filter :authorized?
 
   respond_to :html
   respond_to :js, only: :update
@@ -60,4 +61,12 @@ class Spree::WishlistsController < Spree::StoreController
   def find_wishlist
     @wishlist = Spree::Wishlist.find_by_access_hash!(params[:id])
   end
+
+  def authorized?
+    unless spree_current_user
+      flash[:error] = "Please log in or create an account to create a wishlist."
+      redirect_unauthorized_access
+    end
+  end
+
 end

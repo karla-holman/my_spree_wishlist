@@ -1,5 +1,5 @@
 <% if spree_current_user %>
-  <div id="wishlist-form" style="margin-right: 20px; float: left">
+  <div id="wishlist-form desktop-float-left mobile-float-center" >
     <%= form_for Spree::WishedProduct.new do |f| %>
       <%= f.hidden_field :variant_id, value: @product.master.id %>
       <%= f.hidden_field :quantity %>
@@ -8,4 +8,9 @@
       </button>
     <% end %>
   </div>
-<% end %>
+<% else %>
+  <div id="wishlist-form" class="mobile-float-center" >
+  	<%= link_to "Log on to start a Wishlist", wishlists_path, class: "btn btn-info" %>
+  </div>
+ <% end %>
+
