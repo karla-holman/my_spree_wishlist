@@ -65,19 +65,24 @@
                 end
               end
             %>
-            <% if can_supply %>
+            <% if can_supply && variants_supply.length <= 2 %>
               <h4><%= Spree.t(:in_stock) %></h4>
               <% variants_supply.each do |supply| %>
+                <h5>supply.options_text</h5>
                 <%= form_for :order, url: populate_orders_url, html: { class: "form-inline" } do |f| %>
                   <%= hidden_field_tag 'variant_id', supply.id, size: 3 %>
-                  <div class="form-group" style="max-width: 30%">
+                  <div class="form-group" style="max-width: 30%; float: left">
                     <%= number_field_tag 'quantity', wish.quantity,  class: "form-control" %>
                   </div>
                   <div>
                     <%= link_to Spree.t(:add_to_cart), '#', onclick: '$(this).parent().submit(); return false;', class: 'btn btn-success' %>
                   </div>
                 <% end %>
+                <div class="clearfix"></div>
               <% end %>
+            <% elsif can_supply %>
+              <h4><%= Spree.t(:in_stock) %></h4>
+              <%= link_to "Select desired condition >", product %></p>
             <% else %>
               <h4><%= Spree.t(:out_of_stock) %></h4>
               <%= link_to "Check for other conditions >", product %></p>
