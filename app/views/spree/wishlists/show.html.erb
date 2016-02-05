@@ -68,7 +68,7 @@
             <% if can_supply && variants_supply.length <= 2 %>
               <h4><%= Spree.t(:in_stock) %></h4>
               <% variants_supply.each do |supply| %>
-                <h5>supply.options_text</h5>
+                <h5><%= supply.options_text %> (<%= supply.price_in(current_currency).money_total.to_s %>)</h5>
                 <%= form_for :order, url: populate_orders_url, html: { class: "form-inline" } do |f| %>
                   <%= hidden_field_tag 'variant_id', supply.id, size: 3 %>
                   <div class="form-group" style="max-width: 30%; float: left">
