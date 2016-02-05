@@ -1,17 +1,11 @@
-<% if spree_current_user %>
-  <div id="wishlist-form" class="mobile-float-center" >
-    <%= form_for Spree::WishedProduct.new do |f| %>
-      <%= f.hidden_field :variant_id, value: @product.master.id %>
-      <%= f.hidden_field :quantity %>
-      <button type="submit" class="btn btn-info">
-        <%= Spree.t(:add_to_wishlist) %>
-      </button>
-    <% end %>
-  </div>
-<% end %>
-<% if !spree_current_user %>
-  <div class="mobile-float-center" >
-  	<%= link_to "Log on to start a Wishlist", wishlists_path, class: "btn btn-info" %>
-  </div>
-<% end %>
+<div id="wishlist-form" class="mobile-float-center" >
+  <%= form_for Spree::WishedProduct.new do |f| %>
+    <%= f.hidden_field :variant_id, value: @product.master.id %>
+    <%= f.hidden_field :quantity %>
+    <button type="submit" class="btn btn-info">
+      <%= Spree.t(:add_to_wishlist) %>
+    </button>
+  <% end %>
+</div>
+
 

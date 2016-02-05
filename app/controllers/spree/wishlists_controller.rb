@@ -1,8 +1,8 @@
 class Spree::WishlistsController < Spree::StoreController
   helper 'spree/products'
 
-  before_action :find_wishlist, only: [:destroy, :show, :update, :edit]
   before_filter :authorized?
+  before_action :find_wishlist, only: [:destroy, :show, :update, :edit]
 
   respond_to :html
   respond_to :js, only: :update
