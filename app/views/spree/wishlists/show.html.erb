@@ -55,15 +55,28 @@
             <%= truncate(strip_tags(product.description), length: 100, omission: '...') %>
           </td>
           <td>
-            <% if variant.can_supply? %>
+            <%
+              can_supply = false
+              variants_supply = [] 
+              variant.product.variants.each do |condition|
+                if condition.can_supply?
+                  can_supply = true
+                  variants_supply << condition
+                end
+              end
+            %>
+            <% if can_supply %>
               <h4><%= Spree.t(:in_stock) %></h4>
-              <%= form_for :order, url: populate_orders_url, html: { class: "form-inline" } do |f| %>
-                <%= hidden_field_tag 'variant_id', variant.id, size: 3 %>
-                <div class="form-group" style="max-width: 30%">
-                  <%= number_field_tag 'quantity', wish.quantity,  class: "form-control" %>
-                </div>
-                  <%= link_to Spree.t(:add_to_cart), '#', onclick: '$(this).parent().submit(); return false;', class: 'btn btn-success' %>
-                </div>
+              <% variants_supply.each do |supply| %>
+                <%= form_for :order, url: populate_orders_url, html: { class: "form-inline" } do |f| %>
+                  <%= hidden_field_tag 'variant_id', supply.id, size: 3 %>
+                  <div class="form-group" style="max-width: 30%">
+                    <%= number_field_tag 'quantity', wish.quantity,  class: "form-control" %>
+                  </div>
+                  <div>
+                    <%= link_to Spree.t(:add_to_cart), '#', onclick: '$(this).parent().submit(); return false;', class: 'btn btn-success' %>
+                  </div>
+                <% end %>
               <% end %>
             <% else %>
               <h4><%= Spree.t(:out_of_stock) %></h4>
