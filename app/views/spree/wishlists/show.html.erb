@@ -65,7 +65,7 @@
                 end
               end
             %>
-            <% if can_supply && variants_supply.length <= 2 %>
+            <% if false %>
               <h4><%= Spree.t(:in_stock) %></h4>
               <% variants_supply.each do |supply| %>
                 <h5><%= supply.options_text %> (<%= supply.price_in(current_currency).money_total.to_s %>)</h5>
