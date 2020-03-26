@@ -1,6 +1,6 @@
 class Spree::WishedProductsController < Spree::StoreController
   respond_to :html
-  before_filter :authorized?
+  before_action :authorized?
 
   def create
     @wished_product = Spree::WishedProduct.new(wished_product_attributes)
